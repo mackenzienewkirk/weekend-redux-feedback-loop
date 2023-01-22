@@ -9,7 +9,7 @@ function Feeling() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        history.push('/Understand');
+        history.push('/Understanding');
         dispatch({
             type: 'SET_FEELING',
             payload: newFeeling

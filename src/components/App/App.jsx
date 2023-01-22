@@ -50,15 +50,15 @@ function App() {
         <Route exact path='/Understanding'>
               <Understanding getFeedback={getFeedback}/>
         </Route>
-        {/* <Route exact path='/Support'>
+        <Route exact path='/Support'>
               <Support getFeedback={getFeedback}/>
-          </Route> */}
-        {/* <Route exact path='/comments'>
+          </Route> 
+        <Route exact path='/Comments'>
               <Comments getFeedback={getFeedback}/>
-          </Route> */}
-          {/* <Route exact path='/Review'>
+          </Route> 
+          <Route exact path='/Review'>
               <Review getFeedback={getFeedback}/>
-          </Route>  */} 
+          </Route>
         </Router>
         </div>
   );

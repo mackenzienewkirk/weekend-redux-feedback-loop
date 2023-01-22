@@ -1,49 +1,41 @@
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from 'react';
+import { useDispatch } from "react-redux";
+import { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
-function Support({getFeedback}) {
-
-    const dispatch = useDispatch();
+function Support() {
     const history = useHistory();
-    const feedback = useSelector(store => store.currentSurvey);
-    const [support, setSupport] = useState(feedback.support ? feedback.support : '');
+    const dispatch = useDispatch();
+    const [newSupport, setNewSupport] = useState('');
 
-    const handleClick= () => {
-
+    const handleSubmit = (event) => {
+        event.preventDefault();
         dispatch({
-            type: 'ADD_FEEDBACK',
-            payload: {
-                "support": support
-            }
-        })
+            type: 'SET_SUPPORT',
+            payload: newSupport
+        });
+        history.push('/Comments');
+    };
 
-        history.push('/comments');
-        getFeedback();
-        setSupport('');
-    }
-
-    return (
-        <div className="support">
-            <h3>How well are you being supported?</h3>
-            <input 
-                type="number" 
-                id="supportInput" 
-                min="0" 
-                max="10"
-                required
-                value={support}
-                onChange={event => setSupport(event.target.value)}
-            />
-            <button 
-                className="next-btn" 
-                type="button"
-                onClick={handleClick}
-            >
-                Next
-            </button>
+    return(
+        <div>
+            <h2>How well are you being supported?</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    min={1}
+                    max={5}
+                    type='number'
+                    required='required'
+                    value={newSupport}
+                    onChange={(event) => {
+                        setNewSupport(event.target.value);
+                    }}
+                    >
+                </input>
+                <br/><button className='next-btns' type='submit'>NEXT</button>
+            </form>
         </div>
-    );
+    )
+
 }
 
 
