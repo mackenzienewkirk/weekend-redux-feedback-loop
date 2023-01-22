@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import {HashRouter as Router, Route} from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Feeling from '../Feeling/Feeling';
+import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
 
 function App() {
 
@@ -31,7 +32,6 @@ function App() {
   }
 
   return (
-    // <Provider store={store}>
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Feedback!</h1>
@@ -43,10 +43,15 @@ function App() {
         <Route exact path='/feeling'>
               <Feeling getFeedback={getFeedback}/>
           </Route>
+        <Route exact path='/understanding'>
+              <Understanding getFeedback={getFeedback}/>
+        </Route>
+        <Route exact path='/support'>
+              <Support getFeedback={getFeedback}/>
+          </Route>
           </Router>
       </header>
     </div>
-    // </Provider>
   );
 }
 
