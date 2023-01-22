@@ -47,19 +47,19 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/feeling">Feeling</Link>
+              <Link to="/Feeling">Feeling</Link>
             </li>
             <li>
-              <Link to="/understand">Understand</Link>
+              <Link to="/Understand">Understand</Link>
             </li>
             <li>
-              <Link to="/support">Support</Link>
+              <Link to="/Support">Support</Link>
             </li>
             <li>
-              <Link to="/comments">Comments</Link>
+              <Link to="/Comments">Comments</Link>
             </li>
             <li>
-              <Link to="/review">Review</Link>
+              <Link to="/Review">Review</Link>
             </li>
           </ul>
         </nav> 
@@ -78,7 +78,7 @@ function App() {
           </Route> */}
           <Route exact path='/review'>
               <Review getFeedback={getFeedback}/>
-          </Route>
+          </Route> 
         </Router>
         </div>
   );

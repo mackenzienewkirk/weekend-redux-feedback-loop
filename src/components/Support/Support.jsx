@@ -19,9 +19,7 @@ function Support({getFeedback}) {
         })
 
         history.push('/comments');
-
         getFeedback();
-
         setSupport('');
     }
 

@@ -2,47 +2,40 @@ import {useSelector, useDispatch} from "react-redux";
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
-function Feeling({getFeedback}) {
-
-    const dispatch = useDispatch();
+function Feeling() {
     const history = useHistory();
-    const feedback = useSelector(store => store.currentSurvey);
-    const [feeling, setFeeling] = useState(feedback.feeling ? feedback.feeling : '');
+    const dispatch = useDispatch();
+    const [newFeeling, setNewFeeling] = useState('');
 
-    const handleClick = () => {
-
+    const handleSubmit = (event) => {
+        event.preventDefault();
         dispatch({
-            type: 'ADD_FEEDBACK',
-            payload: {feeling}
-        })
+            type: 'SET_FEELING',
+            payload: newFeeling
+        });
+        history.push('/Understand');
+    };
 
-        //This will send user to the next page//
-        history.push('/understanding');
-        getFeedback();
-        setFeeling('');
-    }
-
-    return (
-        <div className="feeling">
+    return(
+        <div>
             <h2>How are you feeling today?</h2>
-            <input 
-                type="number" 
-                id="feelingInput" 
-                min="0" 
-                max="10"
-                required
-                value={feeling}
-                onChange={event => setFeeling(event.target.value)}
-            />
-            <button 
-                className="next-btn" 
-                type="button"
-                onClick={handleClick}
-            >
-                Next
-            </button>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    min={1}
+                    max={5}
+                    type='number'
+                    required='required'
+                    value={newFeeling}
+                    onChange={(event) => {
+                        setNewFeeling(event.target.value);
+                    }}
+                    >
+                </input>
+                <br/><button className='next-btns' type='submit'>NEXT</button>
+            </form>
         </div>
-    );
+    )
+
 }
 
 export default Feeling;
