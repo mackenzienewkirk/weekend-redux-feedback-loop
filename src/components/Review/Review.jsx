@@ -1,33 +1,26 @@
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react'
 import axios from 'axios';
-import {useSelector, useDispatch} from "react-redux";
-import {useHistory} from 'react-router-dom';
 import './Review.css';
 
-function Review({getFeedback}) {
+function Review() {
 
-    const store = useSelector(store => store);
     const dispatch = useDispatch();
     const history = useHistory();
+    const store = useSelector(store => store);
     const feedbackList = useSelector(store => store.feedbackList);
-    const currentSurvey = useSelector(store => store.currentSurvey);
-
-    let survey = {
-        feeling: store.currentSurvey.feeling,
-        understanding: store.currentSurvey.understanding,
-        support: store.currentSurvey.support,
-        comments: store.currentSurvey.comments
-    }
 
     const handleSubmit = () => {
-        console.log('current survey we are sending to server: ', survey);
+        console.log('current feedback we are sending to server: ', feedbackList);
 
-        axios.post('/api/surveys', survey)
+        axios.post('/api/feedback', feedbackList)
         .then((response) => {
             console.log('In axios post', response);
             alert('Your feedback has been submitted!');
-            history.push('/finished');
+            history.push('/Success');
             getFeedback();
-            getSurveys();
+//Use dispatch to pass current state to reducers, and reducers return the new state//
             dispatch({
                 type: 'SUBMIT',
             })
@@ -41,16 +34,10 @@ function Review({getFeedback}) {
         <div>
             <h2>Review Your Feedback</h2>
             <div>
-                {store.currentSurvey.map((feedback) => {
-                    return(
-                        <div>
-                            <p>Feelings: {feedback.feeling}</p>
-                            <p>Understanding: {feedback.understanding}</p>
-                            <p>Support: {feedback.support}</p>
-                            <p>Comments: {feedback.comments}</p>
-                        </div>
-                    )
-                })}
+                    <p>Feelings: {feedbackList.feeling}</p>
+                    <p>Understanding: {feedbackList.understanding}</p>
+                    <p>Support: {feedbackList.support}</p>
+                    <p>Comments: {feedbackList.comments}</p>
                 <button type='submit' onClick={handleSubmit}>Submit</button> 
             </div>
         </div>

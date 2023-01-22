@@ -10,6 +10,7 @@ function Comments() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+//Use dispatch to pass current state to reducers, and reducers return the new state//
         dispatch({
             type: 'SET_COMMENT',
             payload: newComment
@@ -31,6 +32,7 @@ function Comments() {
                     >
                 </input>
                 <br/><button className='next-btns' type='submit'>NEXT</button>
+                <h5>Fields cannot be left blank.</h5>
             </form>
         </div>
     )

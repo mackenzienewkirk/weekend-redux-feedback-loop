@@ -11,6 +11,7 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
+import Success from '../Success/Success';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
     })
   }
 
+//Routes to get to the next page//
 
   return (
     <div className='App'>
@@ -59,6 +61,9 @@ function App() {
           <Route exact path='/Review'>
               <Review getFeedback={getFeedback}/>
           </Route>
+          <Route exact path='/Success'>
+              <Success getFeedback={getFeedback}/>
+            </Route>
         </Router>
         </div>
   );

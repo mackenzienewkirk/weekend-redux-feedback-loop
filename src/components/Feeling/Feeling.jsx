@@ -10,6 +10,7 @@ function Feeling() {
     const handleSubmit = (event) => {
         event.preventDefault();
         history.push('/Understanding');
+        //Use dispatch to pass current state to reducers, and reducers return the new state//
         dispatch({
             type: 'SET_FEELING',
             payload: newFeeling
@@ -32,6 +33,7 @@ function Feeling() {
                     >
                 </input>
                 <br/><button className='next-btns' type='submit'>NEXT</button>
+                <h5>Fields cannot be left blank.</h5>
             </form>
         </div>
     )
