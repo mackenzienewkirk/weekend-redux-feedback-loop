@@ -1,51 +1,42 @@
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-function Understanding({getFeedback}) {
-
-    const dispatch = useDispatch();
+function Understanding() { 
     const history = useHistory();
-    const feedback = useSelector(store => store.currentSurvey);
-    const [understanding, setUnderstanding] = useState(feedback.understanding ? feedback.understanding : '');
+    const dispatch = useDispatch();
+    const [newUnderstand, setNewUnderstand] = useState('');
 
-    const handleClick= () => {
-
+    const handleSubmit = (event) => {
+        event.preventDefault();
         dispatch({
-            type: 'ADD_FEEDBACK',
-            payload: {
-                "understanding": understanding
-            }
-        })
+            type: 'SET_UNDERSTAND',
+            payload: newUnderstand
+        });
+        console.log('in understanding: ', newUnderstand);
+        history.push('/Support');
+    };
 
-        history.push('/support');
-
-        getFeedback();
-
-        setUnderstanding('');
-    }
-
-    return (
-        <div className="understanding">
-            <h3>How well are you understanding the content?</h3>
-            <input 
-                type="number" 
-                id="understandingInput" 
-                required
-                min="0" 
-                max="10"
-                value={understanding}
-                onChange={event => setUnderstanding(event.target.value)}
-            />
-            <button 
-                className="next-btn" 
-                type="button"
-                onClick={handleClick}
-            >
-                Next
-            </button>            
+    return(
+        <div>
+            <h2>How well are you understanding the content?</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    min={1}
+                    max={5}
+                    type='number'
+                    required='required'
+                    value={newUnderstand}
+                    onChange={(event) => {
+                        setNewUnderstand(event.target.value);
+                    }}
+                    >
+                </input>
+                <br/><button className='next-btns' type='submit'>NEXT</button>
+            </form>
         </div>
-    );
+    )
+
 }
 
 export default Understanding;

@@ -41,44 +41,24 @@ function App() {
     <div className='App'>
       <header className='App-header'>
       <h1 className='App-title'>Feedback!</h1>
+      <h4>Please remember to do it!</h4>
         </header>
         <Router>
-
-        <nav>
-          <ul>
-            <li>
-              <Link to="/Feeling">Feeling</Link>
-            </li>
-            <li>
-              <Link to="/Understand">Understand</Link>
-            </li>
-            <li>
-              <Link to="/Support">Support</Link>
-            </li>
-            <li>
-              <Link to="/Comments">Comments</Link>
-            </li>
-            <li>
-              <Link to="/Review">Review</Link>
-            </li>
-          </ul>
-        </nav> 
-
-        <Route exact path='/'>
+        <Route exact path='/Feeling'>
               <Feeling />
-          </Route>
-        <Route exact path='/understanding'>
+          </Route> 
+        <Route exact path='/Understanding'>
               <Understanding getFeedback={getFeedback}/>
         </Route>
-        <Route exact path='/support'>
+        {/* <Route exact path='/Support'>
               <Support getFeedback={getFeedback}/>
-          </Route>
+          </Route> */}
         {/* <Route exact path='/comments'>
               <Comments getFeedback={getFeedback}/>
           </Route> */}
-          <Route exact path='/review'>
+          {/* <Route exact path='/Review'>
               <Review getFeedback={getFeedback}/>
-          </Route> 
+          </Route>  */} 
         </Router>
         </div>
   );

@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 const initialState = {
     feeling: '',
     understanding: '',
-    supported: '',
+    support: '',
     comments: '',
 }
 
@@ -30,38 +30,9 @@ const initialState = {
         return state
     }
 
-// const feedbackList = (state = [], action) => {
-//     if(action.type === 'SET_FEEDBACK'){
-//         console.log('In feedbackList', action.payload);
-//         return action.payload;
-//     } else if (action.type === 'SUBMIT') {
-//         return [];
-//     }
-//     return state;
-// }
-
-const currentSurvey = (state = [], action) => {
-    console.log('In currentSurvey');
-    if(action.type === 'ADD_FEEDBACK'){
-        console.log('currentSurvey state:', state)
-        return [...state, action.payload];
-    }
-    if(action.type === 'REMOVE_FEEDBACK'){
-        state = state.filter((item) => {return item.id != action.payload})
-        return state;
-    } else if (action.type === 'SUBMIT') {
-        return [];
-    }
-    return state;
-}
-
-
 const reduxStore = createStore(
     combineReducers({
-
-        feedbackList,
-        currentSurvey,
-
+        feedbackList
     }),
     applyMiddleware(logger)
 );

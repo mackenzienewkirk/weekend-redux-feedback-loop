@@ -15,22 +15,16 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-
-    let feedback = (req.body)
-
-    console.log('in router.POST', feedback);
-
-    let queryText = (`INSERT INTO "feedback" ("feeling", "understanding", "supported", "comments")
-    VALUES($1, $2, $3, $4)`)
-    pool.query(queryText, [feedback.feeling, feedback.understanding, feedback.supported, feedback.comments])
-    .then ((response) => {
-        console.log('POST to DB is:', response);
-        res.sendStatus(201);
-    })
-    .catch((error) => {
-        console.log('Error POSTing', queryText, 'error:', error);
+    console.log(req.body);
+    const feedback = req.body;
+    pool.query(`INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
+    VALUES ($1, $2, $3, $4);`, [Number(feedback.feeling),  Number(feedback.understanding), Number(feedback.support), feedback.comments]
+    ).then((result) => {
+        result.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error POST /answers', error);
         res.sendStatus(500);
-    })
-}) 
+    });
+})
 
 module.exports = router;

@@ -37,4 +37,4 @@ function Comments() {
 
 }
 
-export default Comment;
+export default Comments;

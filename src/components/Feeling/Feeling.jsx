@@ -1,6 +1,6 @@
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Feeling() {
     const history = useHistory();
@@ -9,11 +9,11 @@ function Feeling() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        history.push('/Understand');
         dispatch({
             type: 'SET_FEELING',
             payload: newFeeling
         });
-        history.push('/Understand');
     };
 
     return(
