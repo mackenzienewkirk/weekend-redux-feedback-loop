@@ -13,21 +13,17 @@ function Feeling({getFeedback}) {
 
         dispatch({
             type: 'ADD_FEEDBACK',
-            payload: {
-                "feeling": feeling
-            }
+            payload: {feeling}
         })
 
         //This will send user to the next page//
         history.push('/understanding');
-
         getFeedback();
-
         setFeeling('');
     }
 
     return (
-        <div className="feelings">
+        <div className="feeling">
             <h2>How are you feeling today?</h2>
             <input 
                 type="number" 
