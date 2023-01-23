@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function Feeling() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [newFeeling, setNewFeeling] = useState('');
+    const [feeling, setNewFeeling] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -13,7 +13,9 @@ function Feeling() {
         //Use dispatch to pass current state to reducers, and reducers return the new state//
         dispatch({
             type: 'SET_FEELING',
-            payload: newFeeling
+            payload: {
+                "feeling": feeling
+            }
         });
     };
 
@@ -26,7 +28,7 @@ function Feeling() {
                     max={5}
                     type='number'
                     required='required'
-                    value={newFeeling}
+                    value={feeling}
                     onChange={(event) => {
                         setNewFeeling(event.target.value);
                     }}

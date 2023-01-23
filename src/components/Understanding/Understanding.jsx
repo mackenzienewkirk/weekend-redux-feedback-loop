@@ -5,16 +5,18 @@ import { useHistory } from 'react-router-dom';
 function Understanding() { 
     const history = useHistory();
     const dispatch = useDispatch();
-    const [newUnderstand, setNewUnderstand] = useState('');
+    const [understand, setUnderstand] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 //Use dispatch to pass current state to reducers, and reducers return the new state//
         dispatch({
             type: 'SET_UNDERSTAND',
-            payload: newUnderstand
+            payload: {
+                "understand": understand
+            }
         });
-        console.log('in understanding: ', newUnderstand);
+        console.log('in understanding: ', understand);
         history.push('/Support');
     };
 
@@ -27,9 +29,9 @@ function Understanding() {
                     max={5}
                     type='number'
                     required='required'
-                    value={newUnderstand}
+                    value={understand}
                     onChange={(event) => {
-                        setNewUnderstand(event.target.value);
+                        setUnderstand(event.target.value);
                     }}
                     >
                 </input>

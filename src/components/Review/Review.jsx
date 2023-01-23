@@ -11,10 +11,17 @@ function Review() {
     const store = useSelector(store => store);
     const feedbackList = useSelector(store => store.feedbackList);
 
-    const handleSubmit = () => {
-        console.log('current feedback we are sending to server: ', feedbackList);
+    let feedback = {
+        feeling: store.feedbackList.feeling,
+        understanding: store.feedbackList.understanding,
+        support: store.feedbackList.support,
+        comments: store.feedbackList.comments
+    }
 
-        axios.post('/api/feedback', feedbackList)
+    const handleSubmit = () => {
+        console.log('current feedback we are sending to server: ', feedback);
+
+        axios.post('/api/feedback', feedback)
         .then((response) => {
             console.log('In axios post', response);
             alert('Your feedback has been submitted!');
@@ -34,10 +41,16 @@ function Review() {
         <div>
             <h2>Review Your Feedback</h2>
             <div>
-                    <p>Feelings: {feedbackList.feeling}</p>
-                    <p>Understanding: {feedbackList.understanding}</p>
-                    <p>Support: {feedbackList.support}</p>
-                    <p>Comments: {feedbackList.comments}</p>
+                {store.feedbackList.map((feedback) => {
+                    return(
+                        <div>
+                            <p>Feelings: {feedback.feeling}</p>
+                            <p>Understanding: {feedback.understanding}</p>
+                            <p>Support: {feedback.support}</p>
+                            <p>Comments: {feedback.comments}</p>
+                        </div>
+                    )
+                })}
                 <button type='submit' onClick={handleSubmit}>Submit</button> 
             </div>
         </div>
